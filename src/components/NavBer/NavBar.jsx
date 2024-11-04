@@ -1,9 +1,13 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { GiSelfLove } from "react-icons/gi";
+import { LuShoppingCart } from "react-icons/lu";
 
 const NavBar = () => {
   // for changes background color based on the current rout
   const location = useLocation();
   const isDashboard = location.pathname === "/dashboard";
+  const setBgColor = isDashboard ? "bg-white" : "bg-[#9538e2]";
+  const setTextColor = isDashboard ? "text-black" : "text-white";
 
   const links = (
     <>
@@ -17,7 +21,8 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className={`navbar ${isDashboard ? "bg-white" : "bg-[#9538e2]"}`}>
+    // <div className={`navbar ${isDashboard ? "bg-white" : "bg-[#9538e2]"}`}>
+    <div className={`navbar mt-3 px-5 rounded-t-xl ${setBgColor}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,15 +48,16 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className={`text-2xl ${isDashboard ? "text-black" : "text-white"}`}>
+        <a className={`text-2xl ${setTextColor}`}>
           Gadget Heaven
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal flex gap-4 text-lg">{links}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end flex gap-6">
+        <span className=""><GiSelfLove /></span>
+        <span> <LuShoppingCart /></span>
       </div>
     </div>
   );
