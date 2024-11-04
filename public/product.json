@@ -1,0 +1,168 @@
+[
+    {
+      "product_id": 1,
+      "product_title": "Dell Inspiron 15",
+      "product_image": "https://i.ibb.co/F52gKVQ/Dell-Inspiron-15.jpg",
+      "category": "Laptop",
+      "price": 600,
+      "description": "15.6-inch laptop with the latest Intel processors and a variety of ports.",
+      "Specification": ["Intel Core i5", "8GB RAM", "256GB SSD"],
+      "availability": true,
+      "rating": 4.2
+    },
+    {
+      "product_id": 2,
+      "product_title": "Apple iPhone 14",
+      "product_image": "https://i.ibb.co/g9ThZ5H/Apple-i-Phone-14.jpg",
+      "category": "Phone",
+      "price": 999,
+      "description": "Latest iPhone with advanced features and better battery life.",
+      "Specification": ["A15 Bionic chip", "6GB RAM", "128GB storage"],
+      "availability": true,
+      "rating": 4.8
+    },
+    {
+      "product_id": 3,
+      "product_title": "Samsung Galaxy Watch 4",
+      "product_image": "https://i.ibb.co/4tCnB6J/Samsung-Galaxy-Watch-4.jpg",
+      "category": "Smart Watch",
+      "price": 250,
+      "description": "Smartwatch with advanced health tracking features.",
+      "Specification": ["1.4-inch display", "Wear OS", "Heart rate monitor"],
+      "availability": true,
+      "rating": 4.5
+    },
+    {
+      "product_id": 4,
+      "product_title": "Apple MacBook Air M1",
+      "product_image": "https://i.ibb.co/2PgSnnK/Apple-Mac-Book-Air-M1.webp",
+      "category": "Laptop",
+      "price": 999,
+      "description": "Lightweight laptop with Apple's M1 chip for fast performance.",
+      "Specification": ["M1 chip", "8GB RAM", "256GB SSD"],
+      "availability": true,
+      "rating": 4.9
+    },
+    {
+      "product_id": 5,
+      "product_title": "OnePlus Buds Pro",
+      "product_image": "https://i.ibb.co/h2mDmst/One-Plus-Buds-Pro.webp",
+      "category": "Accessory",
+      "price": 150,
+      "description": "Premium earbuds with noise cancellation and fast charging.",
+      "Specification": ["Bluetooth 5.2", "ANC", "Wireless charging"],
+      "availability": true,
+      "rating": 4.3
+    },
+    {
+      "product_id": 6,
+      "product_title": "Apple Watch Series 7",
+      "product_image": "https://i.ibb.co/HgydnmT/Apple-Watch-Series-7.webp",
+      "category": "Smart Watch",
+      "price": 400,
+      "description": "Advanced smartwatch with fitness tracking and cellular capabilities.",
+      "Specification": ["GPS + Cellular", "Heart rate monitor", "ECG"],
+      "availability": true,
+      "rating": 4.7
+    },
+    {
+      "product_id": 7,
+      "product_title": "iPhone 13 Mini",
+      "product_image": "https://i.ibb.co/Pc169sN/i-Phone-13-Mini.jpg",
+      "category": "Phone",
+      "price": 699,
+      "description": "Compact iPhone with a powerful A15 chip and excellent camera.",
+      "Specification": ["A15 Bionic chip", "5.4-inch display", "Dual-camera system"],
+      "availability": true,
+      "rating": 4.6
+    },
+    {
+      "product_id": 8,
+      "product_title": "HP Envy x360",
+      "product_image": "https://i.ibb.co/Gtf3yzg/HP-Envy-x360.png",
+      "category": "Laptop",
+      "price": 850,
+      "description": "Convertible laptop with AMD Ryzen and a touch screen.",
+      "Specification": ["AMD Ryzen 5", "8GB RAM", "512GB SSD"],
+      "availability": true,
+      "rating": 4.3
+    },
+    {
+      "product_id": 9,
+      "product_title": "Apple MacBook Pro M2",
+      "product_image": "https://i.ibb.co/Qr1bLtS/Apple-Mac-Book-Pro-M2.jpg",
+      "category": "Laptop",
+      "price": 1500,
+      "description": "High-performance laptop with the latest Apple M2 chip.",
+      "Specification": ["M2 chip", "16GB RAM", "512GB SSD"],
+      "availability": false,
+      "rating": 4.9
+    },
+    {
+      "product_id": 10,
+      "product_title": "Samsung Galaxy S22",
+      "product_image": "https://i.ibb.co/XZ8gpfK/Samsung-Galaxy-S22.jpg",
+      "category": "Phone",
+      "price": 850,
+      "description": "Powerful smartphone with a high refresh rate display.",
+      "Specification": ["Snapdragon 888", "8GB RAM", "128GB storage"],
+      "availability": true,
+      "rating": 4.5
+    },
+    {
+      "product_id": 11,
+      "product_title": "AirPods Pro",
+      "product_image": "https://i.ibb.co/hcggX13/Air-Pods-Pro.jpg",
+      "category": "Accessory",
+      "price": 249,
+      "description": "Noise-canceling earbuds with spatial audio.",
+      "Specification": ["ANC", "Spatial Audio", "MagSafe charging case"],
+      "availability": true,
+      "rating": 4.6
+    },
+    {
+      "product_id": 12,
+      "product_title": "Sony WH-1000XM5",
+      "product_image": "https://i.ibb.co/qRT0L9Q/Sony-WH-1000-XM5.jpg",
+      "category": "Accessory",
+      "price": 300,
+      "description": "Over-ear noise-canceling headphones with premium sound.",
+      "Specification": ["ANC", "30-hour battery", "Quick charge"],
+      "availability": true,
+      "rating": 4.7
+    },
+    {
+      "product_id": 13,
+      "product_title": "Apple iPad Pro",
+      "product_image": "https://i.ibb.co/2tS0wgM/Apple-i-Pad-Pro.webp",
+      "category": "Tablet",
+      "price": 1099,
+      "description": "High-end tablet with M1 chip and a stunning display.",
+      "Specification": ["M1 chip", "12.9-inch display", "256GB storage"],
+      "availability": false,
+      "rating": 4.8
+    },
+    {
+      "product_id": 14,
+      "product_title": "Google Pixel 7",
+      "product_image": "https://i.ibb.co/ynMw1Fb/Google-Pixel-7.jpg",
+      "category": "Phone",
+      "price": 599,
+      "description": "Affordable smartphone with excellent camera and software experience.",
+      "Specification": ["Google Tensor chip", "6.3-inch display", "128GB storage"],
+      "availability": true,
+      "rating": 4.4
+    },
+    {
+      "product_id": 15,
+      "product_title": "Samsung Galaxy Tab S8",
+      "product_image": "https://i.ibb.co/dB9pv5t/Samsung-Galaxy-Tab-S8.webp",
+      "category": "Tablet",
+      "price": 700,
+      "description": "Android tablet with S Pen support and excellent performance.",
+      "Specification": ["Snapdragon 8 Gen 1", "11-inch display", "256GB storage"],
+      "availability": true,
+      "rating": 4.6
+    }
+  ]
+  
