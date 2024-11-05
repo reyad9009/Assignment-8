@@ -7,7 +7,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import GadgetsDetail from "./components/GadgetsDetail/GadgetsDetail";
-import CoffeeCards from "./components/CoffeeCards/CoffeeCards";
+import GadgetCards from "./components/GadgetCards/GadgetCards";
 
 const router = createBrowserRouter([
   {
@@ -22,19 +22,21 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/',
-            element: <CoffeeCards></CoffeeCards>,
+            element: <GadgetCards></GadgetCards>,
             loader: () => fetch('../product.json'),
           },
           {
             path: '/category/:category',
-            element: <CoffeeCards></CoffeeCards>,
+            element: <GadgetCards></GadgetCards>,
             loader: () => fetch('../product.json'),
           },
         ]
       },
       {
         path: 'gadgets/:product_id',
-        element: <GadgetsDetail></GadgetsDetail>
+        element: <GadgetsDetail></GadgetsDetail>,
+        loader: ()=> fetch('../product.json')
+
       },
       {
         path: 'dashboard',
