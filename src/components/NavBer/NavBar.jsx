@@ -8,13 +8,20 @@ const NavBar = () => {
 
   const isDashboard = location.pathname === "/dashboard";
   const isDashboard2 = location.pathname === `/gadgets/${product_id}`;  // This will now work
+  //const isDashboard3 = location.pathname === "/about";
 
   const setBgColor = isDashboard ? "bg-white" : "bg-[#9538e2]";
   const setTextColor = isDashboard ? "text-black" : "text-white";
 
   const setBgColor2 = isDashboard2 ? "bg-white" : "bg-[#9538e2]";
   const setTextColor2 = isDashboard2 ? "text-black" : "text-black";
+
+  //const setBgColor3 = isDashboard3 ? "bg-white" : "bg-[#9538e2]";
+  //const setTextColor3 = isDashboard3 ? "text-black" : "text-black";
+
+
   const finalTextColor = isDashboard2 ? setTextColor2 : setTextColor;
+  //const finalTextColor2 = isDashboard3 ? setTextColor3 : setTextColor;
 
   const links = (
     <>
@@ -23,6 +30,9 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink to="dashboard">Dashboard</NavLink>
+      </li>
+      <li>
+        <NavLink to="about">About</NavLink>
       </li>
     </>
   );

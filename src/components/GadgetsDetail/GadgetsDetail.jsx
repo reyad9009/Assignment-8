@@ -5,10 +5,36 @@ import { LuShoppingCart } from "react-icons/lu";
 import { GiSelfLove } from "react-icons/gi";
 import "@smastrom/react-rating/style.css";
 
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   addToStoredReadList,
   addToStoredWishList,
 } from "../../Utility/addToDB";
+
+// Function to get the current cart from localStorage
+const getCartFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+};
+
+// Function to check if product is already in the cart
+const isProductInCart = (id) => {
+  const cart = getCartFromLocalStorage();
+  return cart.some(product => product.product_id === id);
+};
+
+// Function to add product to the cart
+const addProductToCart = (id, gadget) => {
+  const cart = getCartFromLocalStorage();
+  // Add the new gadget to the cart if it doesn't already exist
+  if (!isProductInCart(id)) {
+    cart.push(gadget); // Add the gadget object to the cart array
+    localStorage.setItem("cart", JSON.stringify(cart)); // Save the updated cart to localStorage
+    return true; // Indicate that the product was added
+  }
+  return false; // Indicate that the product was already in the cart
+};
 
 const GadgetsDetail = () => {
   const { product_id } = useParams();
@@ -28,14 +54,52 @@ const GadgetsDetail = () => {
   } = gadget;
 
   const handleMarkAsRead = (id) => {
-    addToStoredReadList(id);
+    const isAdded = addProductToCart(id, product_id);
+    if (isAdded) {
+      toast.success('Added to cart successfully!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else {
+      toast.error('This product is already in your cart!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
   };
+
   const handleMarkAsWishList = (id) => {
     addToStoredWishList(id);
+    toast.success('Added to wishlist!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
     <div className="">
+      <ToastContainer /> {/* Make sure the ToastContainer is here */}
       <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
         <div className="flex flex-col justify-center items-center rounded-b-xl text-white pb-32 w-[100%]">
           <h1 className="text-5xl font-bold text-center leading-[4rem] mt-10">
@@ -52,7 +116,7 @@ const GadgetsDetail = () => {
       <div className="z-20 rounded-2xl border-white flex justify-center items-center -mt-44 py-10">
         <div className="card card-side bg-base-100 shadow-xl">
           <figure>
-            <img src={product_image} alt="Movie" />
+            <img src={product_image} alt="Product" />
           </figure>
           <div className="card-body flex flex-col gap-4">
             <h2 className="card-title">{product_title}</h2>
@@ -66,7 +130,6 @@ const GadgetsDetail = () => {
               {Specification &&
                 Specification.map((spec, ind) => (
                   <li key={ind}>
-                    {" "}
                     {ind + 1}. {spec}
                   </li>
                 ))}
@@ -80,9 +143,9 @@ const GadgetsDetail = () => {
             <div className="flex gap-16">
               <button
                 onClick={() => handleMarkAsRead(product_id)}
-                className="btn btn-primary  bg-[#9538e2] border-none rounded-full font-bold px-6" 
+                className="btn btn-primary bg-[#9538e2] border-none rounded-full font-bold px-6" 
               >
-                Add To Card
+                Add To Cart
                 <span className="text-white font-bold text-2xl">
                   <LuShoppingCart />
                 </span>
