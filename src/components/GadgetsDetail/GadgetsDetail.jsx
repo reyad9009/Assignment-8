@@ -5,7 +5,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import { GiSelfLove } from "react-icons/gi";
 import "@smastrom/react-rating/style.css";
 
-import { addToStoredReadList } from '../../Utility/addToDB';
+import { addToStoredReadList, addToStoredWishList } from '../../Utility/addToDB';
 
 const GadgetsDetail = () => {
   const { product_id } = useParams();
@@ -27,15 +27,11 @@ const GadgetsDetail = () => {
 
 
   const handleMarkAsRead =(id)=>{
-    /*
-        1. understand wat to store or save: => bookID
-        2. where to store: database
-        3. array, list, collection:
-        4. check: if the book is already in the read list.
-        5. if not, then add the book to the list
-        6. if yes, do not add the book
-    */
+   
    addToStoredReadList(id);
+}
+const handleMarkAsWishList=(id)=>{
+  addToStoredWishList(id)
 }
   //console.log(product_id, id, gadget);
   return (
@@ -73,7 +69,8 @@ const GadgetsDetail = () => {
               <LuShoppingCart />
             </span>
           </button>
-          <button>        <span className=""><GiSelfLove /></span></button>
+
+          <button onClick={()=>handleMarkAsWishList(product_id)}><span className=""><GiSelfLove /></span></button>
         </div>
       </div>
     </div>

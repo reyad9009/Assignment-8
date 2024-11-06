@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { getStoredReadList } from "../../Utility/addToDB"; 
-import Gadget from "../Gadget/Gadget";
+import { getStoredReadList, getStoredWishList } from "../../Utility/addToDB"; 
+
 import CardData from "../CardData/CardData";
-//import Gadget from "../Gadget/Gadget";
-//import Gadget from "../Gadget/Gadget";
+import WishList from "../WishList/WishList";
+
 
 const Dashboard = () => {
-    const [readList, setReadList] = useState([]);
-    
-    const allBooks = useLoaderData();
+    const [addToCard, setAddToCard] = useState([]);
+    const [addToWishList, setAddToWishList] = useState([])
+
+    const allGadget = useLoaderData();
     useEffect(() => {
-        const storedReadList = getStoredReadList();
-        const storedReadListInt = storedReadList.map((id) => parseInt(id));
+        const storedGadgetList = getStoredReadList();
+        const storedGadgetListInt = storedGadgetList.map((id) => parseInt(id));
     
-        console.log(storedReadList, storedReadListInt, allBooks);
+        //console.log(storedGadgetList, storedGadgetListInt, allGadget);
+        const addCard = allGadget.filter((gadget) =>
+          storedGadgetListInt.includes(gadget.product_id));
+
+//////////////////////////////
+        const storedGadgetWishList = getStoredWishList();
+        const storedGadgetWishListInt = storedGadgetWishList.map((id) => parseInt(id));
     
-        const readBookList = allBooks.filter((book) =>
-          storedReadListInt.includes(book.product_id)
+        //console.log(storedGadgetList, storedGadgetListInt, allGadget);
+        const addWishList = allGadget.filter((gadget) =>
+          storedGadgetWishListInt.includes(gadget.product_id)
+        
         );
-    
-        setReadList(readBookList);
+        setAddToCard(addCard);
+        setAddToWishList(addWishList);
       }, []);
+
 
   const [activeTab, setActiveTab] = useState("Tab1");
   const setTab1Color =
@@ -51,20 +61,20 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className="p-4 border border-t-0">
+      <div className="p-4 border border-t-0 w-[1000px]" >
         {activeTab === "Tab1" ? (
-          <div>
-            <h2 className="text-lg font-bold">Content for Tab 1</h2>
-            <p>This is the content for the first tab.</p>
-            {/* {
-                readList.map((gadget, product_id) => <Gadget key={product_id} gadget={gadget}></Gadget>)
-            } */}
+          <div className="">
+            <div className="flex gap-5 flex-col">
             {
-                readList.map((gadget, product_id)=> <CardData key={product_id} cardData={gadget}></CardData>)
+                addToCard.map((gadget, product_id)=> <CardData key={product_id} cardData={gadget}></CardData>)
             }
+            </div>
           </div>
         ) : (
           <div>
+            {
+                addToWishList.map((gadget, product_id)=> <WishList key={product_id} wishList={gadget}></WishList>)
+            }
             <h2 className="text-lg font-bold">Content for Tab 2</h2>
             <p>This is the content for the second tab.</p>
           </div>
