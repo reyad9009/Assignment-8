@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { getStoredReadList, getStoredWishList } from "../../Utility/addToDB";
+import { getStoredReadList, getStoredWishList,deleteFromStoredReadList } from "../../Utility/addToDB";
 
 import CardData from "../CardData/CardData";
 import WishList from "../WishList/WishList";
@@ -51,13 +51,31 @@ const Dashboard = () => {
   const calculateTotalCost = () => {
     return addToCard.reduce((total, gadget) => total + gadget.price, 0);
   };
-  // Handle delete item
-  const handleDelete = (productId) => {
-    const updatedCardList = addToCard.filter(
-      (gadget) => gadget.product_id !== productId
-    );
-    setAddToCard(updatedCardList);
-  };
+
+  // const handleDelete = (productId) => {
+  //   console.log("Attempting to delete product with ID:", productId);
+
+  //   // Update the state by filtering out the deleted item
+  //   const updatedCardList = addToCard.filter(
+  //     (gadget) => gadget.product_id !== productId
+  //   );
+  //   setAddToCard(updatedCardList);
+
+  //   // Update localStorage by removing the deleted item
+  //   const storedList = getStoredReadList();
+  //   const updatedStoredList = storedList.filter((id) => parseInt(id) !== productId);
+
+  //   localStorage.setItem("storedList", JSON.stringify(updatedStoredList));
+  //   console.log("Updated localStorage read-list:", updatedStoredList);
+  // };
+// Inside your component
+const handleDelete = (productId) => {
+  deleteFromStoredReadList(productId); // Remove item from localStorage
+
+  // Update the component's state to reflect deletion in the UI
+  setAddToCard((prev) => prev.filter((gadget) => gadget.product_id !== productId));
+};
+
 
   return (
     <div className="flex flex-col justify-center items-center w-full pb-[50%]">
@@ -112,7 +130,7 @@ const Dashboard = () => {
                 <CardData
                   key={product_id}
                   cardData={gadget}
-                  onDelete={handleDelete}
+                  handleDelete={handleDelete}
                 ></CardData>
               ))}
             </div>

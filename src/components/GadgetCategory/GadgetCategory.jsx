@@ -1,16 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const GadgetCategory = ({categories}) => {
+const GadgetCategory = ({ categories }) => {
+  const location = useLocation();
+  
+  // Check if we're on the "All" page or a category page
+  const isAllActive = location.pathname === "/";
+  
   return (
     <div>
-     
       <div className="flex flex-col justify-center items-start gap-9">
-      <Link to='/'><button className="bg-orange-300 btn">All</button></Link>
-      {
-        categories.map(category => <Link key={category.category} to={`/category/${category.category}`} className=""><button className="btn px-10 bg-orange-500 rounded-full">{category.category}</button></Link>)
-      }
-    </div>
+        {/* "All" button */}
+        <Link to="/">
+          <button className={`px-10 btn rounded-full ${isAllActive ? "bg-[#b574eb]" : "bg-white"}`}>
+            All
+          </button>
+        </Link>
+        
+        {/* Category buttons */}
+        {categories.map((category) => {
+          const isActive = location.pathname === `/category/${category.category}`;
+          const buttonColor = isActive ? "bg-[#b574eb]" : "bg-white";
+
+          return (
+            <Link key={category.category} to={`/category/${category.category}`}>
+              <button className={`btn px-10 rounded-full ${buttonColor}`}>
+                {category.category}
+              </button>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const NavBar = () => {
   );
   return (
     // <div className={`navbar ${isDashboard ? "bg-white" : "bg-[#9538e2]"}`}>
-    <div className={`navbar mt-3 px-5 rounded-t-xl ${setBgColor}`}>
+    <div className={`navbar mt-3 px-14 rounded-t-xl ${setBgColor}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,11 +53,12 @@ const NavBar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu-horizontal flex gap-4 text-lg">{links}</ul>
+        <ul className={`menu-horizontal flex gap-4 text-lg ${setTextColor}`}>{links}</ul>
       </div>
       <div className="navbar-end flex gap-6">
-        <span className=""><GiSelfLove /></span>
-        <span> <LuShoppingCart /></span>
+      <span className={`${setTextColor} text-xl`}> <LuShoppingCart /></span>
+        <span className={`${setTextColor} text-xl`}><GiSelfLove /></span>
+      
       </div>
     </div>
   );

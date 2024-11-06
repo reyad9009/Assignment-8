@@ -27,6 +27,14 @@ const addToStoredReadList = (id) => {
     }
 }
 
+const deleteFromStoredReadList = (id) => {
+    const storedList = getStoredReadList(); // Get the current list from localStorage
+    const updatedList = storedList.filter((itemId) => itemId !== id); // Remove the item by filtering it out
+    localStorage.setItem('read-list', JSON.stringify(updatedList)); // Update localStorage with the new list
+    console.log(`Item with id ${id} has been deleted from the read list.`);
+};
+
+
 const getStoredWishList = () => {
     // read-list
     const storedWishListStr = localStorage.getItem('wish-list');
@@ -52,4 +60,4 @@ const addToStoredWishList = (id) => {
     }
 }
 
-export { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList}
+export { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList, deleteFromStoredReadList}

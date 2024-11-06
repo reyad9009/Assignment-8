@@ -1,7 +1,7 @@
 import React from "react";
 
-const CardData = ({ cardData, onDelete }) => {
-  const { product_image, product_title, price, description } = cardData;
+const CardData = ({ cardData, handleDelete }) => {
+  const { product_image, product_title, price, description, product_id } = cardData;
   return (
     <div className="flex justify-stretch gap-4 p-4 border rounded-xl">
       <figure>
@@ -14,7 +14,7 @@ const CardData = ({ cardData, onDelete }) => {
           <p>{description}</p>
           <span>price: $ {price} </span>
         </div>
-        <button className="btn" onClick={() => onDelete(product_id)}>
+        <button className="btn" onClick={() => handleDelete(product_id)}>
           Delete
         </button>
       </div>

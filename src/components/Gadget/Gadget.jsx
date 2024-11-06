@@ -5,16 +5,16 @@ const Gadget = ({ gadget }) => {
   const { product_id, price, product_title, product_image } = gadget;
 
   return (
-    <div className="card card-compact w-96 flex flex-col bg-slate-400">
+    <div className="card card-compact w-[25rem] h-[30rem] flex flex-col">
       <figure>
-        <img className="w-12/12" src={product_image} alt="Shoes" />
+        <img className="w-[350px]" src={product_image} alt="Shoes" />
       </figure>
-      <div className="card-body">
+      <div className="card-body flex flex-grow justify-end">
         <h2 className="card-title">{product_title}</h2>
         <span>Price: $ {price}</span>
         <div className="card-actions justify-start">
           <Link to={`/gadgets/${product_id}`}>
-            <button className="btn btn-primary">View Details</button>
+            <button className="px-6 py-3 font-bold rounded-full text-[#b574eb] border border-[#b574eb]">View Details</button>
           </Link>
         </div>
       </div>
