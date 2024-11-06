@@ -1,9 +1,9 @@
 import React from "react";
 
-const CardData = ({ cardData }) => {
+const CardData = ({ cardData, onDelete }) => {
   const { product_image, product_title, price, description } = cardData;
   return (
-    <div className="flex justify-stretch bg-slate-500 gap-4">
+    <div className="flex justify-stretch gap-4 p-4 border rounded-xl">
       <figure>
         <img src={product_image} alt="Movie" className="w-[100px]" />
       </figure>
@@ -14,7 +14,9 @@ const CardData = ({ cardData }) => {
           <p>{description}</p>
           <span>price: $ {price} </span>
         </div>
-        <button className="btn">delet</button>
+        <button className="btn" onClick={() => onDelete(product_id)}>
+          Delete
+        </button>
       </div>
     </div>
   );
