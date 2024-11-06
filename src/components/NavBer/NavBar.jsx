@@ -1,28 +1,34 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { GiSelfLove } from "react-icons/gi";
 import { LuShoppingCart } from "react-icons/lu";
 
 const NavBar = () => {
-  // for changes background color based on the current rout
   const location = useLocation();
+  const { product_id } = useParams();  // Get product_id from the URL params
+
   const isDashboard = location.pathname === "/dashboard";
+  const isDashboard2 = location.pathname === `/gadgets/${product_id}`;  // This will now work
+
   const setBgColor = isDashboard ? "bg-white" : "bg-[#9538e2]";
   const setTextColor = isDashboard ? "text-black" : "text-white";
+
+  const setBgColor2 = isDashboard2 ? "bg-white" : "bg-[#9538e2]";
+  const setTextColor2 = isDashboard2 ? "text-black" : "text-black";
+  const finalTextColor = isDashboard2 ? setTextColor2 : setTextColor;
 
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      {/* <li><NavLink to='/listedBooks'>Listed Books</NavLink></li> */}
       <li>
         <NavLink to="dashboard">Dashboard</NavLink>
       </li>
     </>
   );
+
   return (
-    // <div className={`navbar ${isDashboard ? "bg-white" : "bg-[#9538e2]"}`}>
-    <div className={`navbar mt-3 px-14 rounded-t-xl ${setBgColor}`}>
+    <div className={`navbar mt-3 px-14 rounded-t-xl ${setBgColor} ${setBgColor2}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,17 +54,16 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className={`text-2xl ${setTextColor}`}>
+        <a className={`text-2xl ${finalTextColor}`}>
           Gadget Heaven
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className={`menu-horizontal flex gap-4 text-lg ${setTextColor}`}>{links}</ul>
+        <ul className={`menu-horizontal flex gap-4 text-lg ${finalTextColor}`}>{links}</ul>
       </div>
       <div className="navbar-end flex gap-6">
-      <span className={`${setTextColor} text-xl`}> <LuShoppingCart /></span>
-        <span className={`${setTextColor} text-xl`}><GiSelfLove /></span>
-      
+        <span className={`${finalTextColor} text-xl`}><LuShoppingCart /></span>
+        <span className={`${finalTextColor} text-xl`}><GiSelfLove /></span>
       </div>
     </div>
   );
