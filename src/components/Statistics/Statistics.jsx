@@ -12,20 +12,18 @@ const Statistics = () => {
         </div>
       </div>
       <div className="flex justify-center flex-col items-center mt-[10%]">
-            <h1 className="text-5xl font-extrabold text-red-600">
-              No data here
-            </h1>
+        <h1 className="text-5xl font-extrabold text-red-600">No data here</h1>
 
-            <p className="text-2xl mt-9">
-              Using local storage causes problems with managing data😔
-            </p>
+        <p className="text-2xl mt-9">
+          Using local storage causes problems with managing data😔
+        </p>
 
-            <Link to="/">
-              <button className="bg-[#9538e2] py-4 px-8 rounded-full text-xl text-white mt-10">
-                Go To Home Page
-              </button>
-            </Link>
-          </div>
+        <Link to="/">
+          <button className="bg-[#9538e2] py-4 px-8 rounded-full text-xl text-white mt-10">
+            Go To Home Page
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import "@smastrom/react-rating/style.css";
 
 import {
   addToStoredReadList,
-  addToStoredWishList
+  addToStoredWishList,
 } from "../../Utility/addToDB";
 
 const GadgetsDetail = () => {
@@ -29,7 +29,6 @@ const GadgetsDetail = () => {
 
   const handleMarkAsRead = (id) => {
     addToStoredReadList(id);
-  
   };
   const handleMarkAsWishList = (id) => {
     addToStoredWishList(id);
@@ -59,7 +58,15 @@ const GadgetsDetail = () => {
             <h2 className="card-title">{product_title}</h2>
             <span>Price: $ {price}</span>
             <div>
-              {availability ? <span className="border-2 border-[#309c08] text-lg px-2 py-1 rounded-full text-[#309c08] font-bold">In Stock</span> : <span className="border-2 border-red-600 text-lg px-2 py-1 rounded-full text-red-600 font-bold">No Stock</span>}
+              {availability ? (
+                <span className="border-2 border-[#309c08] text-lg px-2 py-1 rounded-full text-[#309c08] font-bold">
+                  In Stock
+                </span>
+              ) : (
+                <span className="border-2 border-red-600 text-lg px-2 py-1 rounded-full text-red-600 font-bold">
+                  No Stock
+                </span>
+              )}
             </div>
             <span>{description}</span>
             <span className="font-bold text-xl">Specification:</span>
@@ -81,7 +88,7 @@ const GadgetsDetail = () => {
             <div className="flex gap-16">
               <button
                 onClick={() => handleMarkAsRead(product_id)}
-                className="btn btn-primary  bg-[#9538e2] border-none rounded-full font-bold px-6" 
+                className="btn btn-primary  bg-[#9538e2] border-none rounded-full font-bold px-6"
               >
                 Add To Card
                 <span className="text-white font-bold text-2xl">

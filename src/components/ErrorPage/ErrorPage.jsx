@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ErrorPage = () => {
+const ErrorPage = () =>{
     return (
         <div className='flex flex-col justify-center items-center'>
             <h1 className='text-5xl mt-40 text-red-600 font-extrabold'>❌ This is error page ❌</h1>

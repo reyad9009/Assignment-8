@@ -14,7 +14,9 @@ const Gadget = ({ gadget }) => {
         <span>Price: $ {price}</span>
         <div className="card-actions justify-start">
           <Link to={`/gadgets/${product_id}`}>
-            <button className="px-6 py-3 font-bold rounded-full text-[#b574eb] border border-[#b574eb]">View Details</button>
+            <button className="px-6 py-3 font-bold rounded-full text-[#b574eb] border border-[#b574eb]">
+              View Details
+            </button>
           </Link>
         </div>
       </div>

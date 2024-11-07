@@ -6,8 +6,12 @@ const NavBar = () => {
   const location = useLocation();
   const { product_id } = useParams();
 
-  // Define routes that require a different color scheme
-  const changeNavColor = ["/dashboard", `/gadgets/${product_id}`, "/about", "/statistics"];
+  const changeNavColor = [
+    "/dashboard",
+    `/gadgets/${product_id}`,
+    "/about",
+    "/statistics",
+  ];
   const isChangeNavColor = changeNavColor.includes(location.pathname);
 
   const bgColor = isChangeNavColor ? "bg-white" : "bg-[#9538e2]";
@@ -15,16 +19,44 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/" className={({ isActive }) => isActive ?  `${textColor}` : "text-black" }>Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? `${textColor}` : "text-black"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/statistics" className={({ isActive }) => isActive ? "text-[#9538e2] font-bold" : `${textColor}`}>Statistics</NavLink>
+        <NavLink
+          to="/statistics"
+          className={({ isActive }) =>
+            isActive ? "text-[#9538e2] font-bold" : `${textColor}`
+          }
+        >
+          Statistics
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard" className={({ isActive }) => isActive ? "text-[#9538e2] font-bold" : `${textColor}`}>Dashboard</NavLink>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "text-[#9538e2] font-bold" : `${textColor}`
+          }
+        >
+          Dashboard
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/about" className={({ isActive }) => isActive ? "text-[#9538e2] font-bold" : `${textColor}`}>About</NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive ? "text-[#9538e2] font-bold" : `${textColor}`
+          }
+        >
+          About
+        </NavLink>
       </li>
     </>
   );
@@ -33,7 +65,7 @@ const NavBar = () => {
     <div className={`navbar lg:mt-3 px-14 lg:rounded-t-xl ${bgColor}`}>
       <div className="navbar-start">
         <div className="dropdown">
-        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -59,11 +91,17 @@ const NavBar = () => {
         <a className={`text-2xl font-bold ${textColor}`}>Gadget Heaven</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className={`menu-horizontal flex gap-12 text-lg ${textColor}`}>{links}</ul>
+        <ul className={`menu-horizontal flex gap-12 text-lg ${textColor}`}>
+          {links}
+        </ul>
       </div>
       <div className="navbar-end flex gap-6">
-        <span className={`${textColor} text-xl`}><LuShoppingCart /></span>
-        <span className={`${textColor} text-xl`}><GiSelfLove /></span>
+        <span className={`${textColor} text-xl`}>
+          <LuShoppingCart />
+        </span>
+        <span className={`${textColor} text-xl`}>
+          <GiSelfLove />
+        </span>
       </div>
     </div>
   );

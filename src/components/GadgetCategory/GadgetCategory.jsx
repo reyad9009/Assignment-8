@@ -5,7 +5,6 @@ const GadgetCategory = ({ categories }) => {
   return (
     <div>
       <div className="flex flex-col justify-center lg:items-start lg:gap-9 mt-14">
-        {/* "All" button */}
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -17,7 +16,6 @@ const GadgetCategory = ({ categories }) => {
           All Product
         </NavLink>
 
-        {/* Category buttons */}
         {categories.map((category) => {
           return (
             <NavLink

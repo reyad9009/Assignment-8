@@ -16,15 +16,12 @@ const getStoredReadList = () => {
 const addToStoredReadList = (id) => {
     const storedList = getStoredReadList();
     if (storedList.includes(id)) {
-        // already exists. do not add it
-        //console.log(id, 'already exists in the read list')
         toast.warn('All ready Exists')
     }
     else {
         storedList.push(id);
         const storedListStr = JSON.stringify(storedList);
         localStorage.setItem('read-list', storedListStr);
-        // ideally trigger toast from the component
         toast.success('Add To Card success');
     }
 }
@@ -44,7 +41,7 @@ const deleteFromStoredWishList = (id) => {
 
 
 const getStoredWishList = () => {
-    // read-list
+
     const storedWishListStr = localStorage.getItem('wish-list');
     if (storedWishListStr) {
         const storedWishList = JSON.parse(storedWishListStr);
@@ -58,8 +55,6 @@ const getStoredWishList = () => {
 const addToStoredWishList = (id) => {
     const storedWishList = getStoredWishList();
     if (storedWishList.includes(id)) {
-        // already exists. do not add it
-       // console.log(id, 'already exists in the read list')
         toast.warn('All ready Exists')
     }
     else {
@@ -70,4 +65,4 @@ const addToStoredWishList = (id) => {
     }
 }
 
-export { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList, deleteFromStoredReadList,deleteFromStoredWishList }
+export { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList, deleteFromStoredReadList, deleteFromStoredWishList }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Gadget from "../Gadget/Gadget";
-import GadgetCategory from "../GadgetCategory/GadgetCategory";
 
 const GadgetCards = () => {
   const data = useLoaderData();

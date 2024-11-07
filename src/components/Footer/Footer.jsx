@@ -5,7 +5,9 @@ const Footer = () => {
     <div className="flex flex-col justify-center items-center text-center mt-[10%]">
       <div>
         <h1 className="text-2xl font-extrabold pb-4">Gadget Heaven</h1>
-        <p className="text-xl pb-9">Leading the way in cutting-edge technology and innovation.</p>
+        <p className="text-xl pb-9">
+          Leading the way in cutting-edge technology and innovation.
+        </p>
       </div>
       <footer className="footer text-black p-10 flex lg:flex-row flex-col  justify-center items-center lg:gap-80 gap-10">
         <nav className="flex flex-col justify-center items-center">
