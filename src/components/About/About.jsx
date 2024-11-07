@@ -1,25 +1,32 @@
-import React from 'react';
+import React from "react";
 
-const About = () => {
-    return (
-        <div className="flex flex-col justify-center items-center w-full p-8 bg-[#f4f4f4]">
-      <h1 className="text-4xl font-bold text-[#9538e2] mb-6">About Us</h1>
-      <p className="text-center text-lg w-3/4 lg:w-1/2 mb-8">
-        Welcome to the Gadget Dashboard! We are dedicated to providing you with the latest and most innovative gadgets
-        that enhance your everyday life. Our platform offers a wide variety of smart devices, accessories, and more,
-        all in one place for your convenience.
-      </p>
-      <p className="text-center text-lg w-3/4 lg:w-1/2 mb-8">
-        At Gadget Dashboard, we focus on delivering an intuitive and interactive shopping experience. Whether you're
-        adding items to your cart, saving them to your wishlist, or sorting them by price, our goal is to make your
-        shopping journey easy and enjoyable.
-      </p>
-      <p className="text-center text-lg w-3/4 lg:w-1/2">
-        We believe in simplicity, convenience, and making technology accessible to everyone. With our responsive and
-        dynamic platform, you can explore gadgets and manage your list of favorites anytime, anywhere.
-      </p>
+const About = () =>{
+  return (
+    <div className="flex flex-col justify-center  items-center w-full">
+      <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
+        <div className="flex flex-col justify-center items-center rounded-b-xl text-white pb-16 w-[100%]">
+          <h1 className="text-5xl font-bold text-center leading-[4rem] mt-10">
+            About Us
+          </h1>
+          <p className="w-[70%] text-[1rem] text-center leading-[1.6rem] my-6">
+            Welcome to Gadget Dashboard, your one-stop destination for
+            discovering the latest and most innovative gadgets! We are
+            passionate about connecting people with cutting-edge tech that
+            brings excitement, convenience, and smart solutions to everyday
+            life.
+          </p>
+
+          <p className="w-[70%] text-[1rem] text-center leading-[1.6rem] my-6">
+            Our mission is simple: make technology accessible, enjoyable, and
+            personalized for every user. At Gadget Dashboard, we provide a
+            seamless experience for browsing, sorting, and organizing your
+            favorite gadgets, whether they’re trending items or must-have
+            devices that you can’t wait to explore.
+          </p>
+        </div>
+      </div>
     </div>
-    );
+  );
 };
 
 export default About;

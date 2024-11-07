@@ -1,33 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
-import { getStoredReadList, getStoredWishList,deleteFromStoredReadList } from "../../Utility/addToDB";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
+import rightLogo from "../../assets/Group.png";
+import {
+  getStoredReadList,
+  getStoredWishList,
+  deleteFromStoredReadList,
+  deleteFromStoredWishList,
+} from "../../Utility/addToDB";
 
 import CardData from "../CardData/CardData";
 import WishList from "../WishList/WishList";
 
 const Dashboard = () => {
+  const location = useLocation();
+
   const [addToCard, setAddToCard] = useState([]);
   const [addToWishList, setAddToWishList] = useState([]);
   const [sort, setSort] = useState("");
 
-  const allGadget = useLoaderData();
+  const allGadget = useLoaderData([]);
+
   useEffect(() => {
+    const gadgetsArray = Array.isArray(allGadget) ? allGadget : [allGadget];
+    //for add card
     const storedGadgetList = getStoredReadList();
     const storedGadgetListInt = storedGadgetList.map((id) => parseInt(id));
-    const addCard = allGadget.filter((gadget) =>
+    const addCard = gadgetsArray.filter((gadget) =>
       storedGadgetListInt.includes(gadget.product_id)
     );
 
+    // for wish list
     const storedGadgetWishList = getStoredWishList();
     const storedGadgetWishListInt = storedGadgetWishList.map((id) =>
       parseInt(id)
     );
-    const addWishList = allGadget.filter((gadget) =>
+    const addWishList = gadgetsArray.filter((gadget) =>
       storedGadgetWishListInt.includes(gadget.product_id)
     );
+    console.log();
+
     setAddToCard(addCard);
     setAddToWishList(addWishList);
-  }, []);
+  }, [allGadget]);
 
   const [activeTab, setActiveTab] = useState("Tab1");
   const setTab1Color =
@@ -47,38 +61,30 @@ const Dashboard = () => {
       setAddToCard(sortedReadList);
     }
   };
+
   // Calculate total amount
   const calculateTotalCost = () => {
     return addToCard.reduce((total, gadget) => total + gadget.price, 0);
   };
 
-  // const handleDelete = (productId) => {
-  //   console.log("Attempting to delete product with ID:", productId);
+  // delete added card
+  const handleDelete = (productId) => {
+    deleteFromStoredReadList(productId);
+    setAddToCard((prev) =>
+      prev.filter((gadget) => gadget.product_id !== productId)
+    );
+  };
 
-  //   // Update the state by filtering out the deleted item
-  //   const updatedCardList = addToCard.filter(
-  //     (gadget) => gadget.product_id !== productId
-  //   );
-  //   setAddToCard(updatedCardList);
-
-  //   // Update localStorage by removing the deleted item
-  //   const storedList = getStoredReadList();
-  //   const updatedStoredList = storedList.filter((id) => parseInt(id) !== productId);
-
-  //   localStorage.setItem("storedList", JSON.stringify(updatedStoredList));
-  //   console.log("Updated localStorage read-list:", updatedStoredList);
-  // };
-// Inside your component
-const handleDelete = (productId) => {
-  deleteFromStoredReadList(productId); // Remove item from localStorage
-
-  // Update the component's state to reflect deletion in the UI
-  setAddToCard((prev) => prev.filter((gadget) => gadget.product_id !== productId));
-};
-
+  // delete wishList card
+  const handleDeleteWishList = (productId) => {
+    deleteFromStoredWishList(productId);
+    setAddToWishList((prev) =>
+      prev.filter((gadget) => gadget.product_id !== productId)
+    );
+  };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full pb-[50%]">
+    <div className="flex flex-col justify-center items-center w-full">
       <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
         <div className="flex flex-col justify-center items-center rounded-b-xl text-white pb-16 w-[100%]">
           <h1 className="text-5xl font-bold text-center leading-[4rem] mt-10">
@@ -120,9 +126,33 @@ const handleDelete = (productId) => {
                 >
                   Sort by price
                 </button>
-                <button className="bg-[#9538e2] px-8 py-2 rounded-full text-white">
-                  Purchase
+
+                <button
+                  className="bg-[#9538e2] px-8 py-2 rounded-full text-white"
+                  onClick={() =>
+                    document.getElementById("my_modal_1").showModal()
+                  }
+                >
+                  open modal
                 </button>
+                <dialog id="my_modal_1" className="modal">
+                  <div className="modal-box flex flex-col justify-center items-center gap-3">
+                    <img src={rightLogo} alt="" />
+                    <p className="py-4">Payment Successfully</p>
+                    <p>Thanks for purchasing</p>
+                    <p>Total $ {calculateTotalCost()}</p>
+                    <div className="modal-action">
+                      <form method="dialog">
+                        <Link to="/">
+                          {" "}
+                          <button className="btn bg-slate-400 text-xl px-6">
+                            Close
+                          </button>
+                        </Link>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
               </div>
             </div>
             <div className="flex gap-5 flex-col mt-20">
@@ -137,12 +167,18 @@ const handleDelete = (productId) => {
           </div>
         ) : (
           <div className="">
-            <div className="flex gap-5 flex-col mt-20"> 
+            <div className="flex gap-5 flex-col mt-20">
               <h1>WishList</h1>
             </div>
             <div className="flex gap-5 flex-col mt-20">
               {addToWishList.map((gadget, product_id) => (
-                <WishList key={product_id} wishList={gadget}></WishList>
+                <WishList
+                  key={product_id}
+                  wishList={gadget}
+                  handleDeleteWishList={handleDeleteWishList}
+                >
+                  {" "}
+                </WishList>
               ))}
             </div>
           </div>

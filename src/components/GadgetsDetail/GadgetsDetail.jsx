@@ -5,12 +5,9 @@ import { LuShoppingCart } from "react-icons/lu";
 import { GiSelfLove } from "react-icons/gi";
 import "@smastrom/react-rating/style.css";
 
-import { ToastContainer, toast, Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import {
   addToStoredReadList,
-  addToStoredWishList,
+  addToStoredWishList
 } from "../../Utility/addToDB";
 
 const GadgetsDetail = () => {
@@ -32,36 +29,14 @@ const GadgetsDetail = () => {
 
   const handleMarkAsRead = (id) => {
     addToStoredReadList(id);
-    toast.success('🦄 add to card success', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      });
+  
   };
   const handleMarkAsWishList = (id) => {
     addToStoredWishList(id);
-    toast.success('add to wishList success', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      });
   };
 
   return (
     <div className="">
-      <ToastContainer /> {/* Make sure the ToastContainer is here */}
       <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
         <div className="flex flex-col justify-center items-center rounded-b-xl text-white pb-32 w-[100%]">
           <h1 className="text-5xl font-bold text-center leading-[4rem] mt-10">

@@ -1,33 +1,36 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const GadgetCategory = ({ categories }) => {
-  const location = useLocation();
-  
-  // Check if we're on the "All" page or a category page
-  const isAllActive = location.pathname === "/";
-  
   return (
     <div>
-      <div className="flex flex-col justify-center items-start gap-9">
+      <div className="flex flex-col justify-center lg:items-start lg:gap-9 mt-14">
         {/* "All" button */}
-        <Link to="/">
-          <button className={`px-10 btn rounded-full ${isAllActive ? "bg-[#b574eb]" : "bg-white"}`}>
-            All
-          </button>
-        </Link>
-        
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-[#9538e2] font-bold px-10 btn rounded-full"
+              : "bg-white px-10 btn rounded-full"
+          }
+        >
+          All Product
+        </NavLink>
+
         {/* Category buttons */}
         {categories.map((category) => {
-          const isActive = location.pathname === `/category/${category.category}`;
-          const buttonColor = isActive ? "bg-[#b574eb]" : "bg-white";
-
           return (
-            <Link key={category.category} to={`/category/${category.category}`}>
-              <button className={`btn px-10 rounded-full ${buttonColor}`}>
-                {category.category}
-              </button>
-            </Link>
+            <NavLink
+              key={category.category}
+              to={`/category/${category.category}`}
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#9538e2] font-bold px-10 btn rounded-full"
+                  : "bg-white px-10 btn rounded-full"
+              }
+            >
+              {category.category}
+            </NavLink>
           );
         })}
       </div>

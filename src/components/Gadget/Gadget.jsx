@@ -5,7 +5,7 @@ const Gadget = ({ gadget }) => {
   const { product_id, price, product_title, product_image } = gadget;
 
   return (
-    <div className="card card-compact w-[25rem] h-[30rem] flex flex-col">
+    <div className="card card-compact lg:w-[25rem] w-[23rem]  h-[30rem] flex flex-col items-center lg:items-start">
       <figure>
         <img className="w-[350px]" src={product_image} alt="Shoes" />
       </figure>
