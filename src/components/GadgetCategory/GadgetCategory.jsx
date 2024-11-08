@@ -9,7 +9,7 @@ const GadgetCategory = ({ categories }) => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "bg-[#9538e2] font-bold px-10 btn rounded-full"
+              ? "bg-[#9538e2] text-white font-bold px-10 btn rounded-full"
               : "bg-white px-10 btn rounded-full"
           }
         >
@@ -23,7 +23,7 @@ const GadgetCategory = ({ categories }) => {
               to={`/category/${category.category}`}
               className={({ isActive }) =>
                 isActive
-                  ? "bg-[#9538e2] font-bold px-10 btn rounded-full"
+                  ? "bg-[#9538e2] text-white font-bold px-10 btn rounded-full"
                   : "bg-white px-10 btn rounded-full"
               }
             >

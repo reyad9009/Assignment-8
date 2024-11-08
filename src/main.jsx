@@ -18,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    loader: ()=> fetch('./category.json'),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -63,6 +64,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-    <ToastContainer position="top-center" theme="dark" autoClose="2000"/>
+    <ToastContainer position="top-right" theme="dark" autoClose="2000"/>
   </StrictMode>
 );

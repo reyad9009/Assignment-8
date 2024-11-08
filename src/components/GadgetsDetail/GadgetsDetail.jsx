@@ -1,14 +1,15 @@
 import React from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useOutletContext, useParams } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import { LuShoppingCart } from "react-icons/lu";
 import { GiSelfLove } from "react-icons/gi";
 import "@smastrom/react-rating/style.css";
+import { toast } from "react-toastify";
 
-import {
-  addToStoredReadList,
-  addToStoredWishList,
-} from "../../Utility/addToDB";
+// import {
+//   addToStoredReadList,
+//   addToStoredWishList,
+// } from "../../Utility/addToDB";
 
 const GadgetsDetail = () => {
   const { product_id } = useParams();
@@ -27,12 +28,45 @@ const GadgetsDetail = () => {
     rating,
   } = gadget;
 
-  const handleMarkAsRead = (id) => {
-    addToStoredReadList(id);
+  //
+  const { addToCard, addToWishList, addCardItem, addWishListItem} = useOutletContext();
+  console.log('addCardItem');
+
+  const handleMarkAsRead = () => {
+    const itemExists = addToCard.some((item) => item.product_id === gadget.product_id);
+    if (itemExists) {
+      //alert("Item already exists in the card.");
+      toast.warn('All ready Exists')
+    } 
+    else {
+      addCardItem(gadget);
+      //alert("Item added to card successfully!");
+      toast.success(`${product_title} Added Your Card Success`);
+    }
+   // addCardItem(gadget); 
   };
-  const handleMarkAsWishList = (id) => {
-    addToStoredWishList(id);
+
+  const handleMarkAsWishList = () => {
+    const itemExists = addToWishList.some((item) => item.product_id === gadget.product_id);
+    if (itemExists) {
+      //alert("Item already exists in the card.");
+      toast.warn('All ready Exists')
+    } 
+    else {
+      addWishListItem(gadget);
+      //alert("Item added to card successfully!");
+      toast.success(`${product_title} Added Your WishList Success`);
+    }
+    //addWishListItem(gadget);
+    
   };
+
+  // const handleMarkAsRead = (id) => {
+  //   addToStoredReadList(id);
+  // };
+  // const handleMarkAsWishList = (id) => {
+  //   addToStoredWishList(id);
+  // };
 
   return (
     <div className="">
@@ -52,7 +86,7 @@ const GadgetsDetail = () => {
       <div className="z-20 rounded-2xl border-white flex justify-center items-center -mt-44 py-10">
         <div className="card card-side bg-base-100 shadow-xl">
           <figure>
-            <img src={product_image} alt="Movie" />
+            <img className="w-300px" src={product_image}/>
           </figure>
           <div className="card-body flex flex-col gap-4">
             <h2 className="card-title">{product_title}</h2>
@@ -96,7 +130,7 @@ const GadgetsDetail = () => {
                 </span>
               </button>
 
-              <button onClick={() => handleMarkAsWishList(product_id)}>
+              <button className="p-3 rounded-full hover:bg-[#9538e2] hover:text-white" onClick={() => handleMarkAsWishList(product_id)}>
                 <span className="text-2xl">
                   <GiSelfLove />
                 </span>

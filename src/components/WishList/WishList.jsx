@@ -1,11 +1,13 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useOutletContext, useParams } from "react-router-dom";
 
-const WishList = ({ wishList, handleDeleteWishList }) => {
+const WishList = ({ wishList}) => {
   const location = useLocation();
 
-  const { handleMarkAsRead } = useParams();
-  console.log(handleMarkAsRead);
+  const {deleteWishListItem} = useOutletContext();
+
+
+ /// console.log(handleMarkAsRead);
   const { product_image, product_title, price, description, product_id } =
     wishList;
   return (
@@ -23,18 +25,12 @@ const WishList = ({ wishList, handleDeleteWishList }) => {
           <span>
             <span className="font-bold">price: $</span> {price}{" "}
           </span>
-          <button
-            className="btn"
-            onClick={() => handleMarkAsWishList(product_id)}
-          >
-            Add to Card
-          </button>
         </div>
         <button
           className="btn"
-          onClick={() => handleDeleteWishList(product_id)}
+          onClick={() => deleteWishListItem(product_id)}
         >
-          Delete
+          ❌
         </button>
       </div>
     </div>

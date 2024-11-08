@@ -9,7 +9,7 @@ const Footer = () => {
           Leading the way in cutting-edge technology and innovation.
         </p>
       </div>
-      <footer className="footer text-black p-10 flex lg:flex-row flex-col  justify-center items-center lg:gap-80 gap-10">
+      <footer className="footer text-black p-10 flex lg:flex-row flex-col  justify-center items-center lg:items-start lg:gap-80 gap-10">
         <nav className="flex flex-col justify-center items-center">
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Product Support</a>

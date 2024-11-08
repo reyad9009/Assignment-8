@@ -1,47 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useOutletContext } from "react-router-dom";
 import rightLogo from "../../assets/Group.png";
-import {
-  getStoredReadList,
-  getStoredWishList,
-  deleteFromStoredReadList,
-  deleteFromStoredWishList,
-} from "../../Utility/addToDB";
+import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
+
+
+// import {
+//   getStoredReadList,
+//   getStoredWishList,
+//   deleteFromStoredReadList,
+//   deleteFromStoredWishList,
+// } from "../../Utility/addToDB";
 
 import CardData from "../CardData/CardData";
 import WishList from "../WishList/WishList";
 
 const Dashboard = () => {
   const location = useLocation();
+  const {
+    addToCard,
+    addToWishList,
+    deleteCardItem,
+    deleteWishListItem,
+    setAddToCard,
+    addCardItem,
+  } = useOutletContext();
 
-  const [addToCard, setAddToCard] = useState([]);
-  const [addToWishList, setAddToWishList] = useState([]);
-  const [sort, setSort] = useState("");
+  // const [addToCard, setAddToCard] = useState([]);
+  // const [addToWishList, setAddToWishList] = useState([]);
+  // const [sort, setSort] = useState("");
 
-  const allGadget = useLoaderData([]);
+  //const allGadget = useLoaderData([]);
+  // useEffect(() => {
+  //   const gadgetsArray = Array.isArray(allGadget) ? allGadget : [allGadget];
 
-  useEffect(() => {
-    const gadgetsArray = Array.isArray(allGadget) ? allGadget : [allGadget];
-    //for add card
-    const storedGadgetList = getStoredReadList();
-    const storedGadgetListInt = storedGadgetList.map((id) => parseInt(id));
-    const addCard = gadgetsArray.filter((gadget) =>
-      storedGadgetListInt.includes(gadget.product_id)
-    );
+  //   const storedGadgetList = getStoredReadList();
+  //   const storedGadgetListInt = storedGadgetList.map((id) => parseInt(id));
+  //   const addCard = gadgetsArray.filter((gadget) =>
+  //     storedGadgetListInt.includes(gadget.product_id)
+  //   );
 
-    // for wish list
-    const storedGadgetWishList = getStoredWishList();
-    const storedGadgetWishListInt = storedGadgetWishList.map((id) =>
-      parseInt(id)
-    );
-    const addWishList = gadgetsArray.filter((gadget) =>
-      storedGadgetWishListInt.includes(gadget.product_id)
-    );
-    console.log();
+  //   const storedGadgetWishList = getStoredWishList();
+  //   const storedGadgetWishListInt = storedGadgetWishList.map((id) =>
+  //     parseInt(id)
+  //   );
+  //   const addWishList = gadgetsArray.filter((gadget) =>
+  //     storedGadgetWishListInt.includes(gadget.product_id)
+  //   );
+  //   console.log();
 
-    setAddToCard(addCard);
-    setAddToWishList(addWishList);
-  }, [allGadget]);
+  //   setAddToCard(addCard);
+  //   setAddToWishList(addWishList);
+  // }, [allGadget]);
 
   const [activeTab, setActiveTab] = useState("Tab1");
   const setTab1Color =
@@ -53,7 +62,7 @@ const Dashboard = () => {
       ? "bg-white text-[#9538e2]"
       : "bg-[#9538e2] text-white";
 
-  // for sort
+  const [sort, setSort] = useState("");
   const handleSort = (sortType) => {
     setSort(sortType);
     if (sortType === "Ratings") {
@@ -62,27 +71,26 @@ const Dashboard = () => {
     }
   };
 
-  // Calculate total amount
   const calculateTotalCost = () => {
     return addToCard.reduce((total, gadget) => total + gadget.price, 0);
   };
 
-  // delete added card
-  const handleDelete = (productId) => {
-    deleteFromStoredReadList(productId);
-    setAddToCard((prev) =>
-      prev.filter((gadget) => gadget.product_id !== productId)
-    );
+  const handleCloseModal = () => {
+    setAddToCard([]);
   };
+  // const handleDelete = (productId) => {
+  //   deleteFromStoredReadList(productId);
+  //   setAddToCard((prev) =>
+  //     prev.filter((gadget) => gadget.product_id !== productId)
+  //   );
+  // };
 
-  // delete wishList card
-  const handleDeleteWishList = (productId) => {
-    deleteFromStoredWishList(productId);
-    setAddToWishList((prev) =>
-      prev.filter((gadget) => gadget.product_id !== productId)
-    );
-  };
-
+  // const handleDeleteWishList = (productId) => {
+  //   deleteFromStoredWishList(productId);
+  //   setAddToWishList((prev) =>
+  //     prev.filter((gadget) => gadget.product_id !== productId)
+  //   );
+  // };
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
@@ -116,24 +124,25 @@ const Dashboard = () => {
       <div className="w-[1000px] mt-10">
         {activeTab === "Tab1" ? (
           <div className="flex flex-col justify-center items-center">
-            <div className="flex justify-between items-center w-[60%]">
-              <h1>Card</h1>
+            <div className="flex justify-between items-center w-[70%]">
+              <h1 className="text-2xl font-bold">Card</h1>
               <div className="flex flex-row gap-7">
-                <button>Total cost: ${calculateTotalCost()}</button>
+                <button className="text-xl font-bold">Total cost: $ {calculateTotalCost()}</button>
                 <button
-                  className="text-[#9538e2] px-8 py-2 border border-[#9538e2] rounded-full"
+                  className=" flex justify-center items-center gap-3 text-[#9538e2] px-8 py-2 border border-[#9538e2] rounded-full"
                   onClick={() => handleSort("Ratings")}
                 >
-                  Sort by price
+                  Sort by price <HiMiniAdjustmentsHorizontal />
                 </button>
 
                 <button
-                  className="bg-[#9538e2] px-8 py-2 rounded-full text-white"
+                  className={`bg-[#9538e2] px-8 py-2 rounded-full text-white ${calculateTotalCost() === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                   onClick={() =>
                     document.getElementById("my_modal_1").showModal()
                   }
+                  disabled={calculateTotalCost() === 0}
                 >
-                  open modal
+                  Purchase
                 </button>
                 <dialog id="my_modal_1" className="modal">
                   <div className="modal-box flex flex-col justify-center items-center gap-3">
@@ -145,7 +154,10 @@ const Dashboard = () => {
                       <form method="dialog">
                         <Link to="/">
                           {" "}
-                          <button className="btn bg-slate-400 text-xl px-6">
+                          <button
+                            onClick={handleCloseModal}
+                            className="btn bg-[#9538e2] text-white rounded-full text-xl px-6"
+                          >
                             Close
                           </button>
                         </Link>
@@ -160,22 +172,22 @@ const Dashboard = () => {
                 <CardData
                   key={product_id}
                   cardData={gadget}
-                  handleDelete={handleDelete}
+                  // deleteCardItem={handleDelete}
                 ></CardData>
               ))}
             </div>
           </div>
         ) : (
           <div className="">
-            <div className="flex gap-5 flex-col mt-20">
-              <h1>WishList</h1>
+            <div className="flex gap-5 flex-col mt-5">
+              <h1 className="text-xl font-bold">WishList</h1>
             </div>
             <div className="flex gap-5 flex-col mt-20">
               {addToWishList.map((gadget, product_id) => (
                 <WishList
                   key={product_id}
                   wishList={gadget}
-                  handleDeleteWishList={handleDeleteWishList}
+                  // deleteWishListItem={handleDeleteWishList}
                 >
                   {" "}
                 </WishList>

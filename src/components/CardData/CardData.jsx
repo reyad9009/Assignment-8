@@ -1,6 +1,8 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 
-const CardData = ({ cardData, handleDelete }) => {
+const CardData = ({ cardData}) => {
+  const { deleteCardItem} = useOutletContext();
   const { product_image, product_title, price, description, product_id } =
     cardData;
   return (
@@ -15,8 +17,8 @@ const CardData = ({ cardData, handleDelete }) => {
           <p>{description}</p>
           <span>price: $ {price} </span>
         </div>
-        <button className="btn" onClick={() => handleDelete(product_id)}>
-          Delete
+        <button className="btn" onClick={() => deleteCardItem(product_id)}>
+          ❌
         </button>
       </div>
     </div>

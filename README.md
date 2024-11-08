@@ -14,7 +14,7 @@
 <P>7. Daisy UI</P>
 
 ## Handling and managing data by:
-<P>Local storage</P>
+<P>Context API</P>
 
 ## Key Features
 <P>1. Interactive NavBar</P>
