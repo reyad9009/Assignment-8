@@ -27,15 +27,15 @@
 // }
 
 // const deleteFromStoredReadList = (id) => {
-//     const storedList = getStoredReadList(); // Get the current list from localStorage
-//     const updatedList = storedList.filter((itemId) => itemId !== id); // Remove the item by filtering it out
-//     localStorage.setItem('read-list', JSON.stringify(updatedList)); // Update localStorage with the new list
+//     const storedList = getStoredReadList();
+//     const updatedList = storedList.filter((itemId) => itemId !== id); 
+//     localStorage.setItem('read-list', JSON.stringify(updatedList)); 
 //     console.log(`Item with id ${id} has been deleted from the read list.`);
 // };
 // const deleteFromStoredWishList = (id) => {
-//     const storedList = getStoredWishList(); // Get the current list from localStorage
-//     const updatedList = storedList.filter((itemId) => itemId !== id); // Remove the item by filtering it out
-//     localStorage.setItem('wish-list', JSON.stringify(updatedList)); // Update localStorage with the new list
+//     const storedList = getStoredWishList(); 
+//     const updatedList = storedList.filter((itemId) => itemId !== id); 
+//     localStorage.setItem('wish-list', JSON.stringify(updatedList)); 
 //     console.log(`Item with id ${id} has been deleted from the read list.`);
 // };
 

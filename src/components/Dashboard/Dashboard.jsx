@@ -3,7 +3,6 @@ import { Link, useLocation, useOutletContext } from "react-router-dom";
 import rightLogo from "../../assets/Group.png";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 
-
 // import {
 //   getStoredReadList,
 //   getStoredWishList,
@@ -13,6 +12,7 @@ import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 
 import CardData from "../CardData/CardData";
 import WishList from "../WishList/WishList";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -93,6 +93,9 @@ const Dashboard = () => {
   // };
   return (
     <div className="flex flex-col justify-center items-center w-full">
+      <Helmet>
+        <title>Gadget Heaven | Dashboard</title>
+      </Helmet>
       <div className="flex flex-col justify-center items-center bg-[#9538e2] w-full">
         <div className="flex flex-col justify-center items-center rounded-b-xl text-white pb-16 w-[100%]">
           <h1 className="text-5xl font-bold text-center leading-[4rem] mt-10">
