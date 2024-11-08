@@ -18,7 +18,7 @@
       "price": 999,
       "description": "Latest iPhone with advanced features and better battery life.",
       "Specification": ["A15 Bionic chip", "6GB RAM", "128GB storage"],
-      "availability": true,
+      "availability": false,
       "rating": 4.8
     },
     {
@@ -62,7 +62,7 @@
       "price": 400,
       "description": "Advanced smartwatch with fitness tracking and cellular capabilities.",
       "Specification": ["GPS + Cellular", "Heart rate monitor", "ECG"],
-      "availability": true,
+      "availability": false,
       "rating": 4.7
     },
     {
